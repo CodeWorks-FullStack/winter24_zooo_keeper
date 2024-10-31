@@ -10,6 +10,11 @@ const animals = [
     emoji: '🦓',
     mood: 100
   },
+  {
+    name: 'brenda',
+    emoji: '🐊',
+    mood: 100
+  },
 ]
 
 //#endregion
@@ -30,6 +35,15 @@ function soothePolkaDot() {
   polkaDot.mood += 1
   console.log('polka dot', polkaDot);
   drawPolkaDotStats()
+}
+
+function sootheAnimal(animalName) {
+  console.log(`soothing the animal with the name of ${animalName}`);
+  const foundAnimal = animals.find(animal => animal.name == animalName)
+  // foundAnimal.mood += 1 equivalent to ++
+  foundAnimal.mood++
+  console.log('found the animal', foundAnimal);
+  drawAllAnimalStats()
 }
 
 
@@ -54,6 +68,18 @@ function drawPolkaDotStats() {
   const polkaDotParagraphElem = polkaDotElem.querySelector('p')
   const polkaDot = animals[1]
   polkaDotParagraphElem.innerText = `Polka-Dot | Mood ${polkaDot.mood}`
+}
+
+function drawAllAnimalStats() {
+  for (let i = 0; i < animals.length; i++) {
+    const animal = animals[i]
+    console.log('animal', animal);
+    const animalElem = document.getElementById(animal.name)
+    console.log(animalElem);
+
+    const animalParagraphElem = animalElem.querySelector('p')
+    animalParagraphElem.innerText = `${animal.name} | Mood ${animal.mood}`
+  }
 }
 
 //#endregion
