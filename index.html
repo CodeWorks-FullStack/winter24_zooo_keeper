@@ -27,7 +27,8 @@
 
   <main>
     <div class="container-fluid">
-      <div class="row">
+      <!-- ANCHOR animal homes -->
+      <section class="row">
         <div id="jeffrey" class="col-md-4">
           <div class="border border-3 border-dark animal-home jungle-bg mt-3">
             <marquee behavior="alternate" direction="up" scrollamount="10" class="outer-marquee">
@@ -58,7 +59,33 @@
           </div>
           <p class="fs-2 text-center text-capitalize">Brenda | Mood 100</p>
         </div>
-      </div>
+      </section>
+
+      <!-- ANCHOR shop -->
+      <section class="row">
+        <h2>Shop</h2>
+        <div id="ball" class="col-md-3">
+          <div class="text-center">
+            <p class="fs-3">Ball ⚽ | $200</p>
+            <p class="fs-4">Qty: <span>0</span></p>
+            <button onclick="purchaseAnimalItem('ball')" class="btn btn-primary fs-3">Buy!</button>
+          </div>
+        </div>
+        <div id="treats" class="col-md-3">
+          <div class="text-center">
+            <p class="fs-3">Treats 🍬 | $500</p>
+            <p class="fs-4">Qty: <span>0</span></p>
+            <button onclick="purchaseAnimalItem('treats')" class="btn btn-primary fs-3">Buy!</button>
+          </div>
+        </div>
+        <div id="trampoline" class="col-md-3">
+          <div class="text-center">
+            <p class="fs-3">Trampoline 🚀 | $10000</p>
+            <p class="fs-4">Qty: <span>0</span></p>
+            <button onclick="purchaseAnimalItem('trampoline')" class="btn btn-primary fs-3">Buy!</button>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
   <script src="app.js"></script>

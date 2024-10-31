@@ -21,6 +21,28 @@ const animals = [
   },
 ]
 
+const animalItems = [
+  {
+    name: 'ball',
+    price: 200,
+    quantity: 0,
+    sootheAmount: 1
+  },
+  {
+    name: 'treats',
+    price: 500,
+    quantity: 0,
+    sootheAmount: 4
+  },
+  {
+    name: 'trampoline',
+    price: 10000,
+    quantity: 0,
+    sootheAmount: 17
+  },
+
+]
+
 //#endregion
 
 //#region logic
@@ -84,6 +106,24 @@ function evaluateAnimalMoods() {
 }
 
 
+function purchaseAnimalItem(itemName) {
+  const foundAnimalItem = animalItems.find(animalItem => animalItem.name == itemName)
+
+  if (money < foundAnimalItem.price) {
+    window.alert(`You cannot afford the ${foundAnimalItem.name}!`)
+    // NOTE hard stop! Do not continue this function!
+    return
+  }
+
+
+  console.log('purachasing', foundAnimalItem);
+  money -= foundAnimalItem.price
+  foundAnimalItem.quantity++
+
+  drawMoney()
+  drawAnimalItemStats()
+}
+
 //#endregion
 
 //#region graphics
@@ -119,6 +159,15 @@ function drawAllAnimalStats() {
 function drawMoney() {
   const moneyElem = document.getElementById('my-money')
   moneyElem.innerText = money.toString()
+}
+
+function drawAnimalItemStats() {
+  for (let i = 0; i < animalItems.length; i++) {
+    const animalItem = animalItems[i];
+    const animalItemElem = document.getElementById(animalItem.name)
+    const spanElem = animalItemElem.querySelector('span')
+    spanElem.innerText = animalItem.quantity.toString()
+  }
 }
 
 
