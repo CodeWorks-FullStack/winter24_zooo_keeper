@@ -3,17 +3,17 @@ const animals = [
   {
     name: 'jeffrey',
     emoji: '🐅',
-    mood: 100
+    mood: 80
   },
   {
     name: 'polka-dot',
     emoji: '🦓',
-    mood: 100
+    mood: 90
   },
   {
     name: 'brenda',
     emoji: '🐊',
-    mood: 100
+    mood: 20
   },
 ]
 
@@ -40,9 +40,19 @@ function soothePolkaDot() {
 function sootheAnimal(animalName) {
   console.log(`soothing the animal with the name of ${animalName}`);
   const foundAnimal = animals.find(animal => animal.name == animalName)
-  // foundAnimal.mood += 1 equivalent to ++
+  // foundAnimal.mood += 1     equivalent to ++
   foundAnimal.mood++
   console.log('found the animal', foundAnimal);
+  drawAllAnimalStats()
+}
+
+function decreaseAnimalMoods() {
+  for (let i = 0; i < animals.length; i++) {
+    const animal = animals[i]
+    // animal.mood -= 1
+    animal.mood-- // go down by one
+    console.log('changed animal mood', animal);
+  }
   drawAllAnimalStats()
 }
 
@@ -81,5 +91,18 @@ function drawAllAnimalStats() {
     animalParagraphElem.innerText = `${animal.name} | Mood ${animal.mood}`
   }
 }
+
+
+//#endregion
+
+
+//#region document load
+
+drawAllAnimalStats()
+
+// NOTE first argument is INSTRUCTIONS for setInterval to run
+// NOTE second argument is how often to run the supplied function in milliseconds
+// 1000 milliseconds = 1 second
+setInterval(decreaseAnimalMoods, 300)
 
 //#endregion
