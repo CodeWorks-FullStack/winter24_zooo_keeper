@@ -1,4 +1,8 @@
 //#region state
+
+let money = 0
+
+
 const animals = [
   {
     name: 'jeffrey',
@@ -38,7 +42,6 @@ function soothePolkaDot() {
 }
 
 function sootheAnimal(animalName) {
-  console.log(`soothing the animal with the name of ${animalName}`);
   const foundAnimal = animals.find(animal => animal.name == animalName)
   // foundAnimal.mood += 1     equivalent to ++
   foundAnimal.mood++
@@ -47,7 +50,6 @@ function sootheAnimal(animalName) {
     foundAnimal.mood = 100
   }
 
-  console.log('found the animal', foundAnimal);
   drawAllAnimalStats()
 }
 
@@ -62,11 +64,24 @@ function decreaseAnimalMoods() {
       animal.mood = 0
     }
 
-    console.log('changed animal mood', animal);
   }
   drawAllAnimalStats()
 }
 
+
+function evaluateAnimalMoods() {
+  for (let i = 0; i < animals.length; i++) {
+    const animal = animals[i]
+    if (animal.mood > 0) {
+      money += 100
+    }
+    else {
+      money -= 100
+    }
+  }
+
+  drawMoney()
+}
 
 
 //#endregion
@@ -94,13 +109,16 @@ function drawPolkaDotStats() {
 function drawAllAnimalStats() {
   for (let i = 0; i < animals.length; i++) {
     const animal = animals[i]
-    console.log('animal', animal);
     const animalElem = document.getElementById(animal.name)
-    console.log(animalElem);
 
     const animalParagraphElem = animalElem.querySelector('p')
     animalParagraphElem.innerText = `${animal.name} | Mood ${animal.mood}`
   }
+}
+
+function drawMoney() {
+  const moneyElem = document.getElementById('my-money')
+  moneyElem.innerText = money.toString()
 }
 
 
@@ -115,5 +133,7 @@ drawAllAnimalStats()
 // NOTE second argument is how often to run the supplied function in milliseconds
 // 1000 milliseconds = 1 second
 setInterval(decreaseAnimalMoods, 1000)
+
+setInterval(evaluateAnimalMoods, 10000)
 
 //#endregion
