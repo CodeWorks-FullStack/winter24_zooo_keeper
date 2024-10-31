@@ -38,7 +38,7 @@ const animalItems = [
     name: 'trampoline',
     price: 10000,
     quantity: 0,
-    sootheAmount: 17
+    sootheAmount: 15
   },
 
 ]
@@ -79,11 +79,21 @@ function decreaseAnimalMoods() {
   for (let i = 0; i < animals.length; i++) {
     const animal = animals[i]
     // animal.mood -= 1
-    animal.mood-- // go down by one
+    // animal.mood-- // go down by one
+    let moodDecrease = 20
 
+    let totalSootheAmount = calculateSootheAmounts()
+
+    moodDecrease -= totalSootheAmount
+
+    animal.mood -= moodDecrease
     // NOTE clamp
     if (animal.mood < 0) {
       animal.mood = 0
+    }
+
+    if (animal.mood > 100) {
+      animal.mood = 100
     }
 
   }
@@ -124,6 +134,19 @@ function purchaseAnimalItem(itemName) {
   drawAnimalItemStats()
 }
 
+function calculateSootheAmounts() {
+  let totalSootheAmount = 0
+
+  for (let i = 0; i < animalItems.length; i++) {
+    const animalItem = animalItems[i];
+    totalSootheAmount += animalItem.sootheAmount * animalItem.quantity
+  }
+
+  console.log('total is ' + totalSootheAmount);
+
+  return totalSootheAmount
+}
+
 //#endregion
 
 //#region graphics
@@ -150,7 +173,6 @@ function drawAllAnimalStats() {
   for (let i = 0; i < animals.length; i++) {
     const animal = animals[i]
     const animalElem = document.getElementById(animal.name)
-
     const animalParagraphElem = animalElem.querySelector('p')
     animalParagraphElem.innerText = `${animal.name} | Mood ${animal.mood}`
   }
@@ -177,11 +199,12 @@ function drawAnimalItemStats() {
 //#region document load
 
 drawAllAnimalStats()
+drawAnimalItemStats()
 
 // NOTE first argument is INSTRUCTIONS for setInterval to run
 // NOTE second argument is how often to run the supplied function in milliseconds
 // 1000 milliseconds = 1 second
-setInterval(decreaseAnimalMoods, 1000)
+setInterval(decreaseAnimalMoods, 5000)
 
 setInterval(evaluateAnimalMoods, 10000)
 
