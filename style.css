@@ -23,6 +23,12 @@ header {
 
 .animal {
   text-shadow: 1px 0 5px black;
+  user-select: none;
+  cursor: grab;
+}
+
+.animal:active {
+  cursor: grabbing;
 }
 
 .outer-marquee {
