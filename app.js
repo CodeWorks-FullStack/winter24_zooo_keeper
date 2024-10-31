@@ -126,7 +126,6 @@ function purchaseAnimalItem(itemName) {
   }
 
 
-  console.log('purachasing', foundAnimalItem);
   money -= foundAnimalItem.price
   foundAnimalItem.quantity++
 
@@ -142,7 +141,6 @@ function calculateSootheAmounts() {
     totalSootheAmount += animalItem.sootheAmount * animalItem.quantity
   }
 
-  console.log('total is ' + totalSootheAmount);
 
   return totalSootheAmount
 }
