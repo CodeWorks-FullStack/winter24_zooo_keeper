@@ -42,6 +42,11 @@ function sootheAnimal(animalName) {
   const foundAnimal = animals.find(animal => animal.name == animalName)
   // foundAnimal.mood += 1     equivalent to ++
   foundAnimal.mood++
+
+  if (foundAnimal.mood > 100) {
+    foundAnimal.mood = 100
+  }
+
   console.log('found the animal', foundAnimal);
   drawAllAnimalStats()
 }
@@ -51,6 +56,12 @@ function decreaseAnimalMoods() {
     const animal = animals[i]
     // animal.mood -= 1
     animal.mood-- // go down by one
+
+    // NOTE clamp
+    if (animal.mood < 0) {
+      animal.mood = 0
+    }
+
     console.log('changed animal mood', animal);
   }
   drawAllAnimalStats()
@@ -103,6 +114,6 @@ drawAllAnimalStats()
 // NOTE first argument is INSTRUCTIONS for setInterval to run
 // NOTE second argument is how often to run the supplied function in milliseconds
 // 1000 milliseconds = 1 second
-setInterval(decreaseAnimalMoods, 300)
+setInterval(decreaseAnimalMoods, 1000)
 
 //#endregion
